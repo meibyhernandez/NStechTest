@@ -1,0 +1,18 @@
+<h1>{{houseName}} members [{{ char.length }}]</h1>
+
+<!--list of icons in the members.component.ts-->
+<div *ngFor="let icon of icons">
+    <div *ngIf="icon.house==houseName">
+        <img class="icons" [src]="icon.image">
+    </div>
+</div>
+
+<!--show the members in each house-->
+<div class="grid-characters">
+    <div class="col" *ngFor="let characters of char">
+        <div>Name: {{characters.name}} </div>
+        <div>Blood: {{characters.ancestry}}</div>
+        <img [src]="characters.image">
+
+    </div>
+</div>

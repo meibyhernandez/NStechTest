@@ -1,0 +1,41 @@
+<!--select sorting value-->
+<div class="row">
+    <div class="sorting col-md-3">
+        <label>Sort by &nbsp;</label>
+        <select [(ngModel)]='SortbyParam'>
+  <option value="" selected disabled hidden>Select One</option>
+  <option value="name">Name</option>
+  <option value="ancestry">Blood</option>
+</select>
+
+        <!--select direction of sorting-->
+        <button type="button" (click)="onSortDirection()">
+    <i *ngIf="SortDirection==='asc'"><img class="arrow" src="assets/images/arrow-bar-down.svg"></i>
+    <i *ngIf="SortDirection==='desc'"><img src="assets/images/arrow-bar-up.svg"></i>
+  </button>
+    </div>
+
+    <div class="col-md-5 search">
+
+        <input [(ngModel)]='name' placeholder="Enter the name">
+        <button class="btn btn-outline-success filter-btn" type="button" (click)="filter()">Search</button>
+
+    </div>
+</div>
+
+<h2>
+    All Hogwarts members</h2>
+<!--show all the hogwarts members-->
+<div class="grid-characters">
+    <div class="col" *ngFor="let characters of char|filter:search:'name' | sort:[SortbyParam,SortDirection]">
+        <div>Name: {{characters.name}} </div>
+        <div>Blood: {{characters.ancestry}}</div>
+        <div>House: {{characters.house}}</div>
+        <div>Patronus: {{characters.patronus}}</div>
+
+
+        <img [src]="characters.image">
+
+
+    </div>
+</div>
